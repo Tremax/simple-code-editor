@@ -32,7 +32,7 @@
         <ul class="lang_list" :style="{ height: selector_height }">
           <li
             v-for="lang in languageList"
-            :key="lang"
+            :key="lang[0]"
             @click="
               this.mark = lang[1] === undefined ? lang[0] : lang[1];
               this.languageClass = 'language-' + lang[0];
@@ -90,6 +90,7 @@
         :style="{ width: containerWidth === 0 ? '' : containerWidth + 'px' }"
       >
         <code
+	    v-html="modelValue"
             :class="languageClass"
             :style="{ top: top + 'px', left: left + 'px', fontSize: font_size, borderBottomLeftRadius: read_only == true ? border_radius : 0, borderBottomRightRadius: read_only == true ? border_radius : 0 }"
         >{{ read_only == true ? value : modelValue === undefined ? staticValue + '\n' : modelValue + '\n' }}</code>
